@@ -4,13 +4,16 @@ class Paddle {
   float y;
   float paddleWidth;
   float paddleHeight;
+  float verticalSpeed;
 
   Paddle(float paddleWidth, float paddleHeight) {
     this.x = 20;
     this.y = height/2;
     this.paddleWidth = paddleWidth;
     this.paddleHeight = paddleHeight;
+    this.verticalSpeed = 5;
   }
+  //constructor for CPU
 
   public void displayPaddle() {
     stroke(0);
@@ -25,6 +28,13 @@ class Paddle {
       this.y++;
     } else if (keyCode == ENTER) {
       this.y = y;
+    }
+  }
+
+  public void autonomousMotion() {
+    this.y+=verticalSpeed;
+    if (y > height || y < 0) {
+      verticalSpeed *= -1;
     }
   }
 
